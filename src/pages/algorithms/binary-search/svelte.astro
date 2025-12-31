@@ -1,0 +1,120 @@
+---
+import AlgorithmLayout from '@/layouts/AlgorithmLayout.astro';
+import MetadataStrip from '@/components/shared/MetadataStrip.astro';
+import ExpandableTabs from '@/components/shared/ExpandableTabs.astro';
+import CodeBlock from '@/components/ui/CodeBlock.astro';
+import BinarySearchViz from '@/components/visualizations/svelte/BinarySearchViz.svelte';
+import { generateBinarySearchSteps, getDefaultExample } from '@/lib/algorithms/binary-search/visualizer';
+import { javascriptCode, typescriptCode, pythonCode } from '@/content/algorithms/binary-search/code';
+import type { AlgorithmMetadata } from '@/lib/types/algorithm';
+
+const metadata: AlgorithmMetadata = {
+  name: 'Binary Search',
+  slug: 'binary-search',
+  category: 'searching',
+  difficulty: 'beginner',
+  timeComplexity: {
+    best: 'O(1)',
+    average: 'O(log n)',
+    worst: 'O(log n)',
+  },
+  spaceComplexity: 'O(1)',
+};
+
+const example = getDefaultExample();
+const steps = generateBinarySearchSteps(example.arr, example.target);
+---
+
+<AlgorithmLayout title="Binary Search (Svelte)">
+  <MetadataStrip slot="metadata" metadata={metadata} />
+
+  <BinarySearchViz slot="visualization" steps={steps} client:load />
+
+  <ExpandableTabs slot="tabs">
+    <div slot="code">
+      <h3>JavaScript Implementation</h3>
+      <CodeBlock code={javascriptCode} language="JavaScript" />
+
+      <h3 style="margin-top: 2rem;">TypeScript Implementation</h3>
+      <CodeBlock code={typescriptCode} language="TypeScript" />
+
+      <h3 style="margin-top: 2rem;">Python Implementation</h3>
+      <CodeBlock code={pythonCode} language="Python" />
+    </div>
+
+    <div slot="pseudocode">
+      <h3>Pseudocode</h3>
+      <pre style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;">
+FUNCTION binarySearch(array, target):
+    left ← 0
+    right ← length(array) - 1
+
+    WHILE left ≤ right DO:
+        mid ← ⌊(left + right) / 2⌋
+
+        IF array[mid] = target THEN:
+            RETURN mid
+
+        IF array[mid] < target THEN:
+            left ← mid + 1
+        ELSE:
+            right ← mid - 1
+
+    RETURN -1  // Not found
+      </pre>
+    </div>
+
+    <div slot="use-cases">
+      <h3>When to Use Binary Search</h3>
+      <ul style="list-style: disc; margin-left: 1.5rem; line-height: 1.8;">
+        <li>Searching in a <strong>sorted array</strong></li>
+        <li>Need <strong>O(log n)</strong> lookup time</li>
+        <li>Memory is limited (in-place search)</li>
+        <li>Dataset is static or infrequently updated</li>
+      </ul>
+
+      <h3 style="margin-top: 1.5rem;">Real-World Examples</h3>
+      <ul style="list-style: disc; margin-left: 1.5rem; line-height: 1.8;">
+        <li>Phone book lookup</li>
+        <li>Dictionary search</li>
+        <li>Version control (git bisect)</li>
+        <li>Finding insertion point in sorted list</li>
+      </ul>
+    </div>
+
+    <div slot="comparisons">
+      <h3>Binary Search vs Linear Search</h3>
+      <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+        <thead>
+          <tr style="background: #f3f4f6;">
+            <th style="padding: 0.75rem; text-align: left; border: 1px solid #e5e7eb;">Aspect</th>
+            <th style="padding: 0.75rem; text-align: left; border: 1px solid #e5e7eb;">Binary Search</th>
+            <th style="padding: 0.75rem; text-align: left; border: 1px solid #e5e7eb;">Linear Search</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid #e5e7eb;"><strong>Time Complexity</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid #e5e7eb;">O(log n)</td>
+            <td style="padding: 0.75rem; border: 1px solid #e5e7eb;">O(n)</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid #e5e7eb;"><strong>Space Complexity</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid #e5e7eb;">O(1)</td>
+            <td style="padding: 0.75rem; border: 1px solid #e5e7eb;">O(1)</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid #e5e7eb;"><strong>Data Requirement</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid #e5e7eb;"><strong>Must be sorted</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid #e5e7eb;">Any order</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid #e5e7eb;"><strong>Best For</strong></td>
+            <td style="padding: 0.75rem; border: 1px solid #e5e7eb;">Large sorted datasets</td>
+            <td style="padding: 0.75rem; border: 1px solid #e5e7eb;">Small/unsorted data</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ExpandableTabs>
+</AlgorithmLayout>
