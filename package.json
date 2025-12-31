@@ -12,10 +12,8 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/svelte": "^5.7.2",
     "astro": "^4.16.17",
-    "sass": "^1.81.0",
-    "svelte": "^4.2.19"
+    "sass": "^1.81.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
