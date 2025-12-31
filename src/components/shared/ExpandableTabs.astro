@@ -69,10 +69,11 @@ const { codeContent, pseudocodeContent, useCasesContent, comparisonsContent } = 
 
       // Show corresponding panel
       tabPanels.forEach(panel => {
-        if (panel.getAttribute('data-panel') === tabName) {
-          panel.style.display = 'block';
+        const htmlPanel = panel as HTMLElement;
+        if (htmlPanel.getAttribute('data-panel') === tabName) {
+          htmlPanel.style.display = 'block';
         } else {
-          panel.style.display = 'none';
+          htmlPanel.style.display = 'none';
         }
       });
     });

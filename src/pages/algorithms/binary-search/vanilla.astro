@@ -137,13 +137,13 @@ FUNCTION binarySearch(array, target):
 <script>
   import { BinarySearchVisualizer } from '@/components/visualizations/vanilla/BinarySearchViz';
 
-  const canvas = document.getElementById('viz-canvas');
-  const stepDescription = document.getElementById('step-description');
-  const playPauseBtn = document.getElementById('play-pause');
-  const stepBackBtn = document.getElementById('step-back');
-  const stepForwardBtn = document.getElementById('step-forward');
-  const resetBtn = document.getElementById('reset');
-  const speedSlider = document.getElementById('speed-slider');
+  const canvas = document.getElementById('viz-canvas') as HTMLCanvasElement;
+  const stepDescription = document.getElementById('step-description') as HTMLElement;
+  const playPauseBtn = document.getElementById('play-pause') as HTMLButtonElement;
+  const stepBackBtn = document.getElementById('step-back') as HTMLButtonElement;
+  const stepForwardBtn = document.getElementById('step-forward') as HTMLButtonElement;
+  const resetBtn = document.getElementById('reset') as HTMLButtonElement;
+  const speedSlider = document.getElementById('speed-slider') as HTMLInputElement;
 
   // Get steps from window (set by inline script)
   const steps = window.__BINARY_SEARCH_STEPS__;
@@ -152,14 +152,14 @@ FUNCTION binarySearch(array, target):
   let isPlaying = false;
 
   function updateStepDescription() {
-    stepDescription.textContent = viz.getCurrentDescription();
+    if (stepDescription) stepDescription.textContent = viz.getCurrentDescription();
   }
 
   function updatePlayPauseButton() {
-    playPauseBtn.textContent = isPlaying ? '⏸' : '▶';
+    if (playPauseBtn) playPauseBtn.textContent = isPlaying ? '⏸' : '▶';
   }
 
-  stepBackBtn.addEventListener('click', () => {
+  stepBackBtn?.addEventListener('click', () => {
     viz.pause();
     isPlaying = false;
     viz.prevStep();
@@ -167,7 +167,7 @@ FUNCTION binarySearch(array, target):
     updatePlayPauseButton();
   });
 
-  playPauseBtn.addEventListener('click', () => {
+  playPauseBtn?.addEventListener('click', () => {
     if (isPlaying) {
       viz.pause();
       isPlaying = false;
@@ -186,7 +186,7 @@ FUNCTION binarySearch(array, target):
     updatePlayPauseButton();
   });
 
-  stepForwardBtn.addEventListener('click', () => {
+  stepForwardBtn?.addEventListener('click', () => {
     viz.pause();
     isPlaying = false;
     viz.nextStep();
@@ -194,15 +194,16 @@ FUNCTION binarySearch(array, target):
     updatePlayPauseButton();
   });
 
-  resetBtn.addEventListener('click', () => {
+  resetBtn?.addEventListener('click', () => {
     viz.reset();
     isPlaying = false;
     updateStepDescription();
     updatePlayPauseButton();
   });
 
-  speedSlider.addEventListener('input', (e) => {
-    const speed = 2100 - parseInt(e.target.value); // Invert so higher value = faster
+  speedSlider?.addEventListener('input', (e) => {
+    const target = e.target as HTMLInputElement;
+    const speed = 2100 - parseInt(target.value); // Invert so higher value = faster
     viz.setSpeed(speed);
   });
 </script>
