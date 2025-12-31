@@ -130,7 +130,11 @@ FUNCTION binarySearch(array, target):
   </ExpandableTabs>
 </AlgorithmLayout>
 
-<script define:vars={{ stepsJSON }}>
+<script is:inline define:vars={{ stepsJSON }}>
+  window.__BINARY_SEARCH_STEPS__ = JSON.parse(stepsJSON);
+</script>
+
+<script>
   import { BinarySearchVisualizer } from '@/components/visualizations/vanilla/BinarySearchViz';
 
   const canvas = document.getElementById('viz-canvas');
@@ -141,7 +145,8 @@ FUNCTION binarySearch(array, target):
   const resetBtn = document.getElementById('reset');
   const speedSlider = document.getElementById('speed-slider');
 
-  const steps = JSON.parse(stepsJSON);
+  // Get steps from window (set by inline script)
+  const steps = window.__BINARY_SEARCH_STEPS__;
   const viz = new BinarySearchVisualizer(canvas, steps);
 
   let isPlaying = false;
