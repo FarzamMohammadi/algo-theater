@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .controls {
   display: flex;
   align-items: center;
@@ -19,7 +21,7 @@
     transition: background $transition-fast;
 
     &:hover:not(:disabled) {
-      background: darken($color-primary, 10%);
+      background: color.adjust($color-primary, $lightness: -10%);
     }
 
     &:disabled {
