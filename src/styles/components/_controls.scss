@@ -1,0 +1,76 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  border-bottom: 1px solid $color-border;
+  background: $color-bg;
+  flex-wrap: wrap;
+
+  button {
+    @include touch-target;
+    @include flex-center;
+    background: $color-primary;
+    color: white;
+    border-radius: $border-radius-md;
+    padding: $spacing-sm $spacing-lg;
+    font-weight: 500;
+    transition: background $transition-fast;
+
+    &:hover:not(:disabled) {
+      background: darken($color-primary, 10%);
+    }
+
+    &:disabled {
+      background: $color-border;
+      color: $color-text-light;
+    }
+
+    &.icon-button {
+      width: 44px;
+      padding: $spacing-sm;
+      font-size: $font-size-xl;
+    }
+  }
+
+  .speed-control {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    label {
+      font-size: $font-size-sm;
+      color: $color-text-light;
+    }
+
+    input[type="range"] {
+      width: 150px;
+      padding: 0;
+      border: none;
+
+      @include responsive(mobile) {
+        width: 100px;
+      }
+    }
+  }
+
+  .custom-input-group {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    input {
+      width: 200px;
+
+      @include responsive(mobile) {
+        width: 150px;
+      }
+    }
+  }
+
+  @include responsive(mobile) {
+    gap: $spacing-sm;
+    padding: $spacing-md;
+  }
+}

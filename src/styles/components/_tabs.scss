@@ -1,0 +1,93 @@
+.expandable-tabs {
+  border-top: 1px solid $color-border;
+  background: $color-bg-secondary;
+
+  .tab-buttons {
+    display: flex;
+    border-bottom: 1px solid $color-border;
+    background: $color-bg;
+
+    button {
+      flex: 1;
+      @include touch-target;
+      padding: $spacing-md $spacing-lg;
+      border-bottom: 2px solid transparent;
+      color: $color-text-light;
+      font-weight: 500;
+      transition: all $transition-fast;
+
+      &:hover {
+        background: $color-bg-secondary;
+        color: $color-text;
+      }
+
+      &.active {
+        border-bottom-color: $color-primary;
+        color: $color-primary;
+      }
+
+      @include responsive(mobile) {
+        padding: $spacing-sm $spacing-md;
+        font-size: $font-size-sm;
+      }
+    }
+  }
+
+  .tab-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height $transition-medium;
+
+    &.expanded {
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .tab-panel {
+      padding: $spacing-xl;
+
+      @include responsive(mobile) {
+        padding: $spacing-lg;
+      }
+    }
+  }
+}
+
+.code-block {
+  background: #1e1e1e;
+  border-radius: $border-radius-md;
+  padding: $spacing-lg;
+  overflow-x: auto;
+  color: #d4d4d4;
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  line-height: 1.6;
+
+  .language-label {
+    color: #6a9955;
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &.complexity-badge {
+    background: lighten($color-primary, 40%);
+    color: darken($color-primary, 20%);
+  }
+
+  &.category-badge {
+    background: lighten($color-success, 40%);
+    color: darken($color-success, 20%);
+  }
+}

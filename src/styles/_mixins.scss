@@ -1,0 +1,73 @@
+// Responsive breakpoints
+@mixin responsive($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: $breakpoint-mobile - 1) {
+      @content;
+    }
+  }
+  @if $breakpoint == tablet {
+    @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet - 1) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop {
+    @media (min-width: $breakpoint-tablet) {
+      @content;
+    }
+  }
+}
+
+// Touch targets
+@mixin touch-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+// Flexbox center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Absolute center
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Truncate text
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Visually hidden (accessible)
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Focus styles
+@mixin focus-ring {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+// Card
+@mixin card {
+  background: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
+  padding: $spacing-lg;
+}

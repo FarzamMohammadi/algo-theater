@@ -1,0 +1,23 @@
+.metadata-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-lg;
+  border-bottom: 1px solid $color-border;
+  min-height: 80px;
+
+  h1 {
+    font-size: $font-size-2xl;
+    margin: 0;
+  }
+
+  .complexity-badges {
+    display: flex;
+    gap: $spacing-sm;
+  }
+
+  .category-label {
+    color: $color-text-light;
+    font-size: $font-size-sm;
+  }
+}

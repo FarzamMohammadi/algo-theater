@@ -1,0 +1,49 @@
+.algorithm-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .primary-zone {
+    display: flex;
+    flex-direction: column;
+    min-height: 70vh;
+
+    @include responsive(mobile) {
+      min-height: 80vh;
+    }
+  }
+
+  .secondary-zone {
+    flex: 1;
+  }
+}
+
+.algorithm-layout {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  min-height: 100vh;
+
+  .metadata-section {
+    grid-row: 1;
+  }
+
+  .visualization-section {
+    grid-row: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-xl;
+
+    @include responsive(mobile) {
+      padding: $spacing-lg;
+    }
+  }
+
+  .controls-section {
+    grid-row: 3;
+  }
+
+  .tabs-section {
+    grid-row: 4;
+  }
+}
