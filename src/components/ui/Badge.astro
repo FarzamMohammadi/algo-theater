@@ -1,0 +1,16 @@
+---
+import '@/styles/components/_tabs.scss';
+
+interface Props {
+  type?: 'complexity' | 'category';
+  text: string;
+  title?: string;
+}
+
+const { type = 'complexity', text, title } = Astro.props;
+const badgeClass = type === 'complexity' ? 'complexity-badge' : 'category-badge';
+---
+
+<span class={`badge ${badgeClass}`} title={title}>
+  {text}
+</span>

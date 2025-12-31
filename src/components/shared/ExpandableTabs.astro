@@ -1,0 +1,80 @@
+---
+import '@/styles/components/_tabs.scss';
+
+interface Props {
+  codeContent?: string;
+  pseudocodeContent?: string;
+  useCasesContent?: string;
+  comparisonsContent?: string;
+}
+
+const { codeContent, pseudocodeContent, useCasesContent, comparisonsContent } = Astro.props;
+---
+
+<div class="expandable-tabs">
+  <div class="tab-buttons">
+    <button class="tab-button active" data-tab="code">
+      📋 Code
+    </button>
+    <button class="tab-button" data-tab="pseudocode">
+      📐 Pseudocode
+    </button>
+    <button class="tab-button" data-tab="use-cases">
+      💡 Use Cases
+    </button>
+    <button class="tab-button" data-tab="comparisons">
+      ⚖️ Compare
+    </button>
+  </div>
+
+  <div class="tab-content expanded" id="tab-content">
+    <div class="tab-panel" id="code-panel" data-panel="code">
+      <slot name="code">
+        {codeContent && <div set:html={codeContent} />}
+      </slot>
+    </div>
+
+    <div class="tab-panel" id="pseudocode-panel" data-panel="pseudocode" style="display: none;">
+      <slot name="pseudocode">
+        {pseudocodeContent && <div set:html={pseudocodeContent} />}
+      </slot>
+    </div>
+
+    <div class="tab-panel" id="use-cases-panel" data-panel="use-cases" style="display: none;">
+      <slot name="use-cases">
+        {useCasesContent && <div set:html={useCasesContent} />}
+      </slot>
+    </div>
+
+    <div class="tab-panel" id="comparisons-panel" data-panel="comparisons" style="display: none;">
+      <slot name="comparisons">
+        {comparisonsContent && <div set:html={comparisonsContent} />}
+      </slot>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Tab switching logic
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tabName = button.getAttribute('data-tab');
+
+      // Update active button
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      // Show corresponding panel
+      tabPanels.forEach(panel => {
+        if (panel.getAttribute('data-panel') === tabName) {
+          panel.style.display = 'block';
+        } else {
+          panel.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

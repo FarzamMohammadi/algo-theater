@@ -1,0 +1,32 @@
+---
+import Badge from '../ui/Badge.astro';
+import '@/styles/components/_metadata-strip.scss';
+import type { AlgorithmMetadata } from '@/lib/types/algorithm';
+
+interface Props {
+  metadata: AlgorithmMetadata;
+}
+
+const { metadata } = Astro.props;
+const { name, category, difficulty, timeComplexity, spaceComplexity } = metadata;
+---
+
+<div class="metadata-strip">
+  <div class="algorithm-info">
+    <h1>{name}</h1>
+    <span class="category-label">{category} • {difficulty}</span>
+  </div>
+
+  <div class="complexity-badges">
+    <Badge
+      type="complexity"
+      text={`Time: ${timeComplexity.average}`}
+      title={`Best: ${timeComplexity.best}, Avg: ${timeComplexity.average}, Worst: ${timeComplexity.worst}`}
+    />
+    <Badge
+      type="complexity"
+      text={`Space: ${spaceComplexity}`}
+      title={`Space complexity: ${spaceComplexity}`}
+    />
+  </div>
+</div>

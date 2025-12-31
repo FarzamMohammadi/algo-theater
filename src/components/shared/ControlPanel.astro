@@ -1,0 +1,44 @@
+---
+import '@/styles/components/_controls.scss';
+
+// This component provides the visual structure for controls
+// Individual pages will wire up the interactive functionality
+---
+
+<div class="controls">
+  <button class="icon-button" id="step-back" aria-label="Step backward">
+    ◀
+  </button>
+  <button class="icon-button" id="play-pause" aria-label="Play/Pause">
+    ▶
+  </button>
+  <button class="icon-button" id="step-forward" aria-label="Step forward">
+    ▶
+  </button>
+  <button class="icon-button" id="reset" aria-label="Reset">
+    ↺
+  </button>
+
+  <div class="speed-control">
+    <label for="speed-slider">Speed:</label>
+    <input
+      type="range"
+      id="speed-slider"
+      min="100"
+      max="2000"
+      value="1000"
+      step="100"
+      aria-label="Animation speed"
+    />
+  </div>
+
+  <div class="custom-input-group">
+    <input
+      type="text"
+      id="custom-input"
+      placeholder="Custom input"
+      aria-label="Custom input"
+    />
+    <button id="custom-submit">Apply</button>
+  </div>
+</div>
