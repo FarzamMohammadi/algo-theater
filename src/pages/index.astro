@@ -1,0 +1,192 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Home">
+  <main class="home">
+    <header class="hero">
+      <h1>algo-theater</h1>
+      <p class="tagline">A visual stage for algorithms and data structures.</p>
+      <p class="subtitle">Watch them perform, step by step.</p>
+    </header>
+
+    <section class="algorithms">
+      <h2>Algorithms</h2>
+
+      <div class="category">
+        <h3>Searching</h3>
+        <ul class="algorithm-list">
+          <li>
+            <a href="/algorithms/binary-search/vanilla">Binary Search (Vanilla JS)</a>
+            <span class="badge">Beginner</span>
+          </li>
+          <li>
+            <a href="/algorithms/binary-search/svelte">Binary Search (Svelte)</a>
+            <span class="badge">Beginner</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="coming-soon">
+        <p>229 more algorithms coming soon...</p>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <div class="footer-content">
+        <p>
+          <a href="https://github.com/farzammohammadi/algo-theater" target="_blank" rel="noopener noreferrer">
+            View on GitHub
+          </a>
+        </p>
+        <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+          Built with Astro, TypeScript, and Sass
+        </p>
+      </div>
+    </footer>
+  </main>
+</BaseLayout>
+
+<style lang="scss">
+  .home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+
+      @media (max-width: 768px) {
+        font-size: 2.5rem;
+      }
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.95;
+
+      @media (max-width: 768px) {
+        font-size: 1.25rem;
+      }
+    }
+
+    .subtitle {
+      font-size: 1.125rem;
+      opacity: 0.85;
+
+      @media (max-width: 768px) {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .algorithms {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #1f2937;
+    }
+
+    .category {
+      margin-bottom: 3rem;
+
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #374151;
+      }
+
+      .algorithm-list {
+        list-style: none;
+        padding: 0;
+
+        li {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1rem;
+          margin-bottom: 0.75rem;
+          background: #f9fafb;
+          border-radius: 0.5rem;
+          border: 1px solid #e5e7eb;
+          transition: all 150ms ease;
+
+          &:hover {
+            background: #f3f4f6;
+            border-color: #d1d5db;
+            transform: translateX(4px);
+          }
+
+          a {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 1.125rem;
+            font-weight: 500;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+
+          .badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+          }
+        }
+      }
+    }
+
+    .coming-soon {
+      text-align: center;
+      padding: 3rem 0;
+      color: #6b7280;
+      font-style: italic;
+    }
+  }
+
+  .page-footer {
+    border-top: 1px solid #e5e7eb;
+    background: #f9fafb;
+    padding: 2rem;
+    margin-top: auto;
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      color: #6b7280;
+
+      a {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+</style>
