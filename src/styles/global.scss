@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /* CSS Reset */
 *,
 *::before,
@@ -44,7 +46,7 @@ a {
   transition: color $transition-fast;
 
   &:hover {
-    color: darken($color-primary, 10%);
+    color: color.adjust($color-primary, $lightness: -10%);
   }
 
   &:focus-visible {
