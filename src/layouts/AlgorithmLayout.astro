@@ -1,0 +1,42 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import '@/styles/layouts/_algorithm.scss';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="algorithm-page">
+    <div class="algorithm-layout">
+      <!-- Primary Zone: 70-80% of viewport -->
+      <div class="primary-zone">
+        <!-- Metadata Strip -->
+        <div class="metadata-section">
+          <slot name="metadata" />
+        </div>
+
+        <!-- Visualization Area -->
+        <div class="visualization-section">
+          <slot name="visualization" />
+        </div>
+
+        <!-- Control Panel -->
+        <div class="controls-section">
+          <slot name="controls" />
+        </div>
+      </div>
+
+      <!-- Secondary Zone: Expandable Tabs -->
+      <div class="secondary-zone">
+        <div class="tabs-section">
+          <slot name="tabs" />
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

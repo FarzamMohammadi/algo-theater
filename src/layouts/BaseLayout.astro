@@ -1,0 +1,25 @@
+---
+import '@/styles/global.scss';
+import '@/styles/layouts/_base.scss';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'A visual stage for algorithms and data structures' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} | algo-theater</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
